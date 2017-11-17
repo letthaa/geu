@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.ucsal.geu.dao.BlocoDAO;
-import br.ucsal.geu.model.Bloco;
+import br.ucsal.geu.dao.TipoDAO;
+import br.ucsal.geu.model.Tipo;
 
-@WebServlet("/blocos")
-public class BlocoController extends HttpServlet {
+@WebServlet("/tipos")
+public class TipoController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
 
@@ -22,11 +22,11 @@ public class BlocoController extends HttpServlet {
 
 		String q = request.getParameter("q");
 		if (q != null && q.equals("new")) {
-			request.getRequestDispatcher("blocoform.jsp").forward(request, response);
+			request.getRequestDispatcher("tipoform.jsp").forward(request, response);
 		} else {
-			BlocoDAO dao = new BlocoDAO();
+			TipoDAO dao = new TipoDAO();
 			request.setAttribute("lista", dao.listar());
-			request.getRequestDispatcher("blocolist.jsp").forward(request, response);
+			request.getRequestDispatcher("tipolist.jsp").forward(request, response);
 		}
 	}
 
@@ -35,15 +35,13 @@ public class BlocoController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String nome = request.getParameter("nome");
-		String letra = request.getParameter("letra");
-		String lat = request.getParameter("latitude");
-		String longi = request.getParameter("longitude");
-		Bloco bloco = new Bloco(nome, letra, lat, longi);
-		BlocoDAO dao = new BlocoDAO();
-		dao.inserir(bloco);
+		String descricao = request.getParameter("descricao");
+		Tipo tipo = new Tipo(nome, descricao);
+		TipoDAO dao = new TipoDAO();
+		dao.inserir(tipo);
 
 		request.setAttribute("lista", dao.listar());
-		request.getRequestDispatcher("blocolist.jsp").forward(request, response);
+		request.getRequestDispatcher("tipolist.jsp").forward(request, response);
 
 	}
 }

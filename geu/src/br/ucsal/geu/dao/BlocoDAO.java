@@ -14,7 +14,6 @@ public class BlocoDAO {
 
 	private Conexao conexao;
 
-	
 	public BlocoDAO() {
 		this.conexao = Conexao.getConexao();
 	}
@@ -25,7 +24,7 @@ public class BlocoDAO {
 		try {
 			stmt = conexao.getConnection().createStatement();
 			ResultSet rs = stmt.executeQuery("select id,nome,letra,latitude,longitude from blocos;");
-			while(rs.next()) {
+			while (rs.next()) {
 				Bloco b = new Bloco();
 				b.setId(rs.getInt("id"));
 				b.setNome(rs.getString("nome"));
@@ -38,13 +37,13 @@ public class BlocoDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-	
+
 		return blocos;
 	}
 
 	public void inserir(Bloco bloco) {
 		try {
-			
+
 			PreparedStatement ps = conexao.getConnection()
 					.prepareStatement("insert into blocos (nome,letra,latitude,longitude) values (?,?,?,?);");
 			ps.setString(1, bloco.getNome());
@@ -62,10 +61,11 @@ public class BlocoDAO {
 	public Bloco getByID(int id) {
 		Bloco b = null;
 		try {
-			PreparedStatement ps = conexao.getConnection().prepareStatement("select id,nome,letra,latitude,longitude from blocos where id=?");
+			PreparedStatement ps = conexao.getConnection()
+					.prepareStatement("select id,nome,letra,latitude,longitude from blocos where id=?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()) {
+			if (rs.next()) {
 				b = new Bloco();
 				b.setId(rs.getInt("id"));
 				b.setNome(rs.getString("nome"));
@@ -73,19 +73,15 @@ public class BlocoDAO {
 				b.setLatitude(rs.getString("latitude"));
 				b.setLongitude(rs.getString("longitude"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return b;
 	}
-	
+
 	public void close() {
 		conexao.closeConnection();
 	}
-	
-	
-	
-
 
 }

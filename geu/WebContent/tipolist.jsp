@@ -18,15 +18,23 @@
 	<c:import url="topo.jsp"></c:import>
 	<div class="container">
 		<div class="page-header">
-			<h1>Inserir Bloco</h1>
+			<h1>Lista Tipos</h1>
 		</div>
-		<form action="blocos" method="post">
-			Nome:<input type="text" name="nome" /><br> Letra:<input
-				type="text" name="letra" /><br> Latitude:<input type="text"
-				name="latitude" /><br> Longitude:<input type="text"
-				name="longitude" /><br> <input type="submit" value="Salvar" />
 
-		</form>
+		<table class="table">
+			<tr>
+				<th>Nome</th>
+				<th>Descricao</th>
+
+			</tr>
+
+			<c:forEach var="e" items="${lista}">
+				<tr>
+					<td>${e.nome}</td>
+					<td>${e.descricao}</td>
+				<tr>
+			</c:forEach>
+		</table>
 	</div>
 
 	<c:import url="rodape.jsp"></c:import>

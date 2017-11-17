@@ -18,13 +18,12 @@
 	<c:import url="topo.jsp"></c:import>
 	<div class="container">
 		<div class="page-header">
-			<h1>Inserir Bloco</h1>
+			<h1>Inserir Tipo</h1>
 		</div>
-		<form action="blocos" method="post">
-			Nome:<input type="text" name="nome" /><br> Letra:<input
-				type="text" name="letra" /><br> Latitude:<input type="text"
-				name="latitude" /><br> Longitude:<input type="text"
-				name="longitude" /><br> <input type="submit" value="Salvar" />
+		<form action="tipos" method="post">
+			Nome:<input type="text" name="nome" /><br> Descricao:<input
+				type="text" name="descricao" /><br> <input type="submit"
+				value="Salvar" />
 
 		</form>
 	</div>
