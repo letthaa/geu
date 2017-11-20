@@ -12,18 +12,21 @@ import br.ucsal.geu.dao.BlocoDAO;
 import br.ucsal.geu.model.Bloco;
 
 @WebServlet("/blocos")
-public class BlocoController extends HttpServlet {
-
+public class BlocoController extends HttpServlet
+{
+ 
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 
 		String q = request.getParameter("q");
-		if (q != null && q.equals("new")) {
+		if (q != null && q.equals("new"))
+		{
 			request.getRequestDispatcher("blocoform.jsp").forward(request, response);
-		} else {
+		} else
+		{
 			BlocoDAO dao = new BlocoDAO();
 			request.setAttribute("lista", dao.listar());
 			request.getRequestDispatcher("blocolist.jsp").forward(request, response);
@@ -31,8 +34,8 @@ public class BlocoController extends HttpServlet {
 	}
 
 	@Override
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException
+	{
 
 		String nome = request.getParameter("nome");
 		String letra = request.getParameter("letra");
